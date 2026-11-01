@@ -98,6 +98,51 @@ class AtpSystemTest extends TestCase
         $response->assertSee('Lokasi & Geofence', false);
     }
 
+    public function test_sidebar_navigation_rendered_for_asn_role_across_modules(): void
+    {
+        $routes = [
+            '/' => 'Portal Terpadu',
+            '/absensi' => 'Presensi Mandiri GPS',
+            '/tpp' => 'Dashboard Kinerja & Realisasi TPP',
+            '/pajak' => 'Pajak TER PP 58/2023',
+            '/absensi/riwayat' => 'Riwayat Kehadiran',
+            '/tpp/aktivitas' => 'Log Aktivitas Harian',
+            '/pajak/simulator' => 'Simulator TER',
+        ];
+
+        foreach ($routes as $route => $expectedText) {
+            $response = $this->actingAs($this->asnUser)->get($route);
+            $response->assertStatus(200);
+            $response->assertSee('id="admin-sidebar"', false);
+            $response->assertSee('id="mobile-sidebar-backdrop"', false);
+            $response->assertSee('openAdminSidebar()', false);
+            $response->assertSee($expectedText, false);
+        }
+    }
+
+    public function test_sidebar_navigation_rendered_for_admin_role_across_modules(): void
+    {
+        $adminRoutes = [
+            '/' => 'Portal Terpadu',
+            '/admin' => 'Dashboard Pengelola ATP',
+            '/admin/lokasi' => 'Titik Koordinat',
+            '/admin/pegawai' => 'Master Pegawai',
+            '/absensi' => 'Presensi Mandiri GPS',
+            '/tpp' => 'Dashboard Kinerja & Realisasi TPP',
+            '/pajak' => 'Pajak TER PP 58/2023',
+            '/jam-kerja' => 'Pengaturan Jam Kerja Dinamis',
+        ];
+
+        foreach ($adminRoutes as $route => $expectedText) {
+            $response = $this->actingAs($this->adminUser)->get($route);
+            $response->assertStatus(200);
+            $response->assertSee('id="admin-sidebar"', false);
+            $response->assertSee('id="mobile-sidebar-backdrop"', false);
+            $response->assertSee('openAdminSidebar()', false);
+            $response->assertSee($expectedText, false);
+        }
+    }
+
     public function test_presensi_checkin_within_geofence_succeeds(): void
     {
         $lokasi = LokasiPresensi::first();
