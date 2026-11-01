@@ -1,13 +1,17 @@
-@extends('layouts.app')
-@section('title', 'Tambah Pola Jam Kerja - ATP')
+@extends('layouts.admin')
+@section('title', 'Tambah Pola Jam Kerja - Admin ATP')
+@section('page_title', 'Tambah Pola')
+@section('title_header', 'Tambah Pola Jam Kerja Baru')
 @section('content')
-<div class="max-w-4xl mx-auto space-y-4">
-    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex justify-between items-center">
+<div class="max-w-4xl space-y-4">
+    <div class="bg-white rounded-xl shadow-xs border border-gray-200 p-4 flex justify-between items-center">
         <div>
-            <h1 class="text-base font-bold text-gray-900">Tambah Pola Jam Kerja</h1>
-            <p class="text-xs text-gray-500">Konfigurasi jadwal kerja dan toleransi per hari.</p>
+            <h2 class="text-base font-bold text-gray-900">Formulir Pola Jam Kerja</h2>
+            <p class="text-xs text-gray-500">Konfigurasi jadwal kerja dan batas toleransi keterlambatan per hari.</p>
         </div>
-        <a href="{{ route('jam-kerja.index') }}" class="text-xs text-gray-600 hover:text-gray-900">&larr; Kembali</a>
+        <a href="{{ route('jam-kerja.index') }}" class="text-xs font-semibold text-gray-600 hover:text-[#1877F2] bg-gray-50 hover:bg-blue-50 border border-gray-200 px-3 py-1.5 rounded-lg transition">
+            <i class="fa-solid fa-arrow-left mr-1"></i>Kembali
+        </a>
     </div>
 
     <form action="{{ route('jam-kerja.store') }}" method="POST" class="space-y-4">

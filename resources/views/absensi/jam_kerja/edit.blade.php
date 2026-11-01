@@ -1,13 +1,17 @@
-@extends('layouts.app')
-@section('title', 'Edit Pola Jam Kerja - ATP')
+@extends('layouts.admin')
+@section('title', 'Edit Pola Jam Kerja - Admin ATP')
+@section('page_title', 'Edit Pola')
+@section('title_header', 'Ubah Pola Jam Kerja')
 @section('content')
-<div class="max-w-4xl mx-auto space-y-4">
-    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex justify-between items-center">
+<div class="max-w-4xl space-y-4">
+    <div class="bg-white rounded-xl shadow-xs border border-gray-200 p-4 flex justify-between items-center">
         <div>
-            <h1 class="text-base font-bold text-gray-900">Edit Pola Jam Kerja: {{ $jam_kerja->nama }}</h1>
-            <p class="text-xs text-gray-500">Sesuaikan aturan jam masuk, jam pulang, dan batas toleransi.</p>
+            <h2 class="text-base font-bold text-gray-900">Edit: {{ $jam_kerja->nama }}</h2>
+            <p class="text-xs text-gray-500">Sesuaikan aturan jam masuk, jam pulang, dan batas toleransi keterlambatan.</p>
         </div>
-        <a href="{{ route('jam-kerja.index') }}" class="text-xs text-gray-600 hover:text-gray-900">&larr; Kembali</a>
+        <a href="{{ route('jam-kerja.index') }}" class="text-xs font-semibold text-gray-600 hover:text-[#1877F2] bg-gray-50 hover:bg-blue-50 border border-gray-200 px-3 py-1.5 rounded-lg transition">
+            <i class="fa-solid fa-arrow-left mr-1"></i>Kembali
+        </a>
     </div>
 
     <form action="{{ route('jam-kerja.update', $jam_kerja->id) }}" method="POST" class="space-y-4">

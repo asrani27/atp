@@ -7,6 +7,7 @@ use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\JamKerjaController;
 use App\Http\Controllers\TppController;
 use App\Http\Controllers\PajakController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,13 @@ Route::middleware(['auth'])->group(function () {
 
     // Panel Admin Jam Kerja Dinamis
     Route::resource('jam-kerja', JamKerjaController::class);
+
+    // Panel Admin Terpadu (Sidebar Navigation)
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+        Route::get('/lokasi', [AdminController::class, 'lokasiIndex'])->name('lokasi.index');
+        Route::get('/pegawai', [AdminController::class, 'pegawaiIndex'])->name('pegawai.index');
+    });
 
     // Modul TPP & Aktivitas
     Route::prefix('tpp')->name('tpp.')->group(function () {

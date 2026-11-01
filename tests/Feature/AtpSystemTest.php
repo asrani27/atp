@@ -20,6 +20,7 @@ class AtpSystemTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        $this->adminUser = User::where('username', 'admin')->first();
         $this->asnUser = User::where('username', '198501152010011012')->first();
         $this->pegawai = Pegawai::where('nip', '198501152010011012')->first();
     }
@@ -78,10 +79,23 @@ class AtpSystemTest extends TestCase
 
     public function test_dynamic_work_schedule_admin_panel(): void
     {
-        $response = $this->actingAs($this->asnUser)->get('/jam-kerja');
+        $response = $this->actingAs($this->adminUser)->get('/jam-kerja');
         $response->assertStatus(200);
-        $response->assertSee('Panel Pengaturan Jam Kerja Dinamis');
+        $response->assertSee('Pengaturan Jam Kerja Dinamis');
         $response->assertSee('Pola 5 Hari Kerja (Reguler Kantor)');
+        $response->assertSee('id="admin-sidebar"', false);
+        $response->assertSee('id="mobile-sidebar-backdrop"', false);
+    }
+
+    public function test_admin_dashboard_and_sidebar(): void
+    {
+        $response = $this->actingAs($this->adminUser)->get('/admin');
+        $response->assertStatus(200);
+        $response->assertSee('Dashboard Pengelola ATP');
+        $response->assertSee('id="admin-sidebar"', false);
+        $response->assertSee('id="mobile-sidebar-backdrop"', false);
+        $response->assertSee('Jadwal & Jam Kerja', false);
+        $response->assertSee('Lokasi & Geofence', false);
     }
 
     public function test_presensi_checkin_within_geofence_succeeds(): void

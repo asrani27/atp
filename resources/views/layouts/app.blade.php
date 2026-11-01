@@ -42,6 +42,12 @@
                         <i class="fa-solid fa-calculator"></i>
                         <span class="hidden md:inline">Pajak TER</span>
                     </a>
+                    @if(Auth::check() && Auth::user()->hasAnyRole(['superadmin', 'admin_skpd']))
+                        <a href="{{ route('admin.dashboard') }}" class="px-3 py-2 rounded-lg text-sm font-semibold flex items-center space-x-1.5 transition text-amber-200 hover:bg-white/10">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span class="hidden md:inline">Panel Admin</span>
+                        </a>
+                    @endif
                 </nav>
 
                 <div class="flex items-center space-x-3">

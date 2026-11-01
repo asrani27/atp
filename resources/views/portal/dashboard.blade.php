@@ -62,14 +62,19 @@
             </div>
         </div>
 
-        <div class="bg-[#1877F2] text-white rounded-lg p-4 shadow-sm flex items-center justify-between">
+        <div class="bg-[#1877F2] text-white rounded-lg p-4 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div>
                 <h4 class="font-bold text-sm"><i class="fa-solid fa-sliders mr-1.5"></i> Panel Jam Kerja Dinamis</h4>
-                <p class="text-xs text-blue-100">Atur pola jam kerja 5 hari kantor, 6 hari sekolah/puskesmas, ramadhan, & shift.</p>
+                <p class="text-xs text-blue-100">Atur pola jam kerja 5 hari kantor, 6 hari sekolah/puskesmas, ramadhan, & shift dengan navigasi sidebar responsif.</p>
             </div>
-            <a href="{{ route('jam-kerja.index') }}" class="bg-white text-[#1877F2] font-bold px-3 py-1.5 rounded text-xs">
-                Kelola Jam Kerja &rarr;
-            </a>
+            <div class="flex items-center space-x-2">
+                <a href="{{ route('admin.dashboard') }}" class="bg-white/20 hover:bg-white/30 text-white font-bold px-3 py-1.5 rounded text-xs border border-white/30 transition">
+                    <i class="fa-solid fa-gauge-high mr-1"></i> Panel Admin
+                </a>
+                <a href="{{ route('jam-kerja.index') }}" class="bg-white text-[#1877F2] hover:bg-blue-50 font-bold px-3 py-1.5 rounded text-xs transition">
+                    Kelola Jam Kerja &rarr;
+                </a>
+            </div>
         </div>
     </div>
 </div>
