@@ -27,7 +27,7 @@ Route::domain(env('DOMAIN_ABSENSI', 'absensi.local'))->middleware(['auth'])->gro
     Route::post('/check-in', [PresensiController::class, 'checkIn'])->name('domain.absensi.checkin');
     Route::post('/check-out', [PresensiController::class, 'checkOut'])->name('domain.absensi.checkout');
     Route::get('/riwayat', [PresensiController::class, 'riwayat'])->name('domain.absensi.riwayat');
-    Route::resource('jam-kerja', JamKerjaController::class);
+    Route::resource('jam-kerja', JamKerjaController::class, ['as' => 'domain.absensi']);
 });
 
 /*
